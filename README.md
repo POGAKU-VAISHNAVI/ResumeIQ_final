@@ -29,6 +29,8 @@ ResumeIQ/
 ### 1. Install Python dependencies
 ```bash
 cd backend
+python -m venv venv
+venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
