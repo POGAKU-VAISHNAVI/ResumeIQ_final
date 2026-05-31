@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>ResumeIQ — Home</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet"/>
+<style>
+:root{--fd:'Syne',sans-serif;--fb:'DM Sans',sans-serif;--ac:#7c6af7;--ac2:#a89cf7;--acd:rgba(124,106,247,.12);}
+[data-theme="dark"]{--bg:#07070d;--bg2:#0e0e18;--bg3:#15151f;--card:#1a1a26;--b:#222235;--b2:#2c2c42;--tx:#eaeaf5;--tx2:#8484a8;--gr:#3ecf8e;--cy:#22d3ee;}
+[data-theme="light"]{--bg:#f5f5fc;--bg2:#ffffff;--bg3:#eeeef8;--card:#ffffff;--b:#ddddf0;--b2:#c8c8e8;--tx:#1a1a2e;--tx2:#555580;--gr:#1a9e62;--cy:#0891b2;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--fb);background:var(--bg);color:var(--tx);min-height:100vh;}
+nav{display:flex;align-items:center;gap:14px;padding:0 28px;height:60px;background:var(--bg);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:100;}
+.nlogo{font-family:var(--fd);font-size:20px;font-weight:800;letter-spacing:-1px;color:var(--tx);}
+.nlogo span{color:var(--ac2);}
+.nlinks{display:flex;gap:4px;margin-left:auto;}
+.nlink{padding:7px 15px;border-radius:8px;font-size:13px;font-weight:500;color:var(--tx2);cursor:pointer;border:none;background:none;font-family:var(--fb);transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;}
+.nlink:hover{color:var(--tx);background:var(--bg3);}
+.hero{text-align:center;padding:80px 28px 60px;max-width:800px;margin:0 auto;}
+.badge{display:inline-flex;align-items:center;gap:8px;background:var(--acd);border:1px solid rgba(124,106,247,.28);padding:5px 16px;border-radius:100px;font-size:12px;color:var(--ac2);margin-bottom:24px;}
+.dot{width:7px;height:7px;background:var(--gr);border-radius:50%;box-shadow:0 0 6px var(--gr);}
+h1{font-family:var(--fd);font-size:clamp(36px,6vw,68px);font-weight:800;line-height:1.03;letter-spacing:-2.5px;margin-bottom:20px;}
+.grad{background:linear-gradient(130deg,var(--ac2),var(--cy));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.herop{font-size:17px;color:var(--tx2);max-width:500px;margin:0 auto 36px;line-height:1.8;font-weight:300;}
+.btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:var(--fd);transition:all .2s;text-decoration:none;border:none;}
+.btn-p{background:var(--ac);color:#fff;}
+.btn-p:hover{opacity:.85;transform:translateY(-2px);box-shadow:0 8px 20px rgba(124,106,247,.3);}
+.btn-s{background:var(--bg3);color:var(--tx);border:1px solid var(--b2);}
+.btn-s:hover{border-color:var(--ac);background:var(--acd);}
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;max-width:900px;margin:60px auto;padding:0 28px;}
+.feat{background:var(--card);border:1px solid var(--b);border-radius:16px;padding:24px;transition:all .2s;}
+.feat:hover{border-color:var(--ac);transform:translateY(-4px);}
+.feat-ico{font-size:28px;margin-bottom:12px;}
+.feat-title{font-family:var(--fd);font-size:15px;font-weight:700;margin-bottom:8px;}
+.feat-desc{font-size:13px;color:var(--tx2);line-height:1.6;}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nlogo">Resume<span>IQ</span></div>
+  <div class="nlinks">
+    <a class="nlink" href="analyze.html">⚡ Analyze</a>
+    <a class="nlink" href="login.html">Login</a>
+    <a class="nlink" href="signup.html" style="background:var(--ac);color:#fff;border-radius:8px;">Sign Up</a>
+  </div>
+</nav>
+<div class="hero">
+  <div class="badge"><span class="dot"></span> AI-Powered Resume Analysis</div>
+  <h1>Get Hired Faster with <span class="grad">Smarter</span> Resume Feedback</h1>
+  <p class="herop">Upload your resume, pick your target role, and get instant AI-powered feedback, skill gap analysis, and ATS optimization tips.</p>
+  <div class="btns">
+    <a class="btn btn-p" href="analyze.html">⚡ Analyze My Resume</a>
+    <a class="btn btn-s" href="signup.html">Create Free Account</a>
+  </div>
+</div>
+<div class="features">
+  <div class="feat"><div class="feat-ico">📊</div><div class="feat-title">Instant Score</div><div class="feat-desc">Get a score out of 100 with a detailed breakdown across 5 categories.</div></div>
+  <div class="feat"><div class="feat-ico">🎯</div><div class="feat-title">Role Matching</div><div class="feat-desc">See how well your resume matches 15+ job roles and target the right ones.</div></div>
+  <div class="feat"><div class="feat-ico">🤖</div><div class="feat-title">AI Suggestions</div><div class="feat-desc">Get specific, actionable suggestions to improve your resume score.</div></div>
+  <div class="feat"><div class="feat-ico">✅</div><div class="feat-title">ATS Optimized</div><div class="feat-desc">Ensure your resume passes Applicant Tracking Systems used by top companies.</div></div>
+</div>
+</body></html>

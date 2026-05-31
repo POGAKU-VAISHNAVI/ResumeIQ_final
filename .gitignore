@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+*.pyo
+uploads/*.pdf
+uploads/users.json
+.env
+venv/
+.vscode/
+*.DS_Store

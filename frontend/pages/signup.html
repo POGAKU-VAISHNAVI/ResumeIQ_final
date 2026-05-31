@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>ResumeIQ — Sign Up</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet"/>
+<style>
+:root{--fd:'Syne',sans-serif;--fb:'DM Sans',sans-serif;--r:14px;--rs:8px;--ac:#7c6af7;--ac2:#a89cf7;--acd:rgba(124,106,247,.12);}
+[data-theme="dark"]{--bg:#07070d;--bg2:#0e0e18;--bg3:#15151f;--card:#1a1a26;--b:#222235;--b2:#2c2c42;--tx:#eaeaf5;--tx2:#8484a8;--tx3:#42425a;--gr:#3ecf8e;--re:#f87171;}
+[data-theme="light"]{--bg:#f5f5fc;--bg2:#ffffff;--bg3:#eeeef8;--card:#ffffff;--b:#ddddf0;--b2:#c8c8e8;--tx:#1a1a2e;--tx2:#555580;--tx3:#9090b8;--gr:#1a9e62;--re:#d94040;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--fb);background:var(--bg);color:var(--tx);min-height:100vh;display:flex;align-items:center;justify-content:center;}
+.box{background:var(--card);border:1px solid var(--b2);border-radius:20px;padding:40px;width:100%;max-width:420px;margin:20px;}
+.logo{font-family:var(--fd);font-size:24px;font-weight:800;letter-spacing:-1px;text-align:center;margin-bottom:8px;}
+.logo span{color:var(--ac2);}
+.sub{text-align:center;color:var(--tx2);font-size:14px;margin-bottom:32px;}
+.fi{margin-bottom:16px;}
+.fi label{display:block;font-size:12px;font-weight:600;color:var(--tx2);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;}
+.fi input{width:100%;background:var(--bg3);border:1px solid var(--b2);border-radius:var(--rs);padding:11px 14px;color:var(--tx);font-size:14px;font-family:var(--fb);outline:none;transition:all .2s;}
+.fi input:focus{border-color:var(--ac);background:var(--bg2);}
+.btn{width:100%;background:var(--ac);color:#fff;border:none;padding:12px;border-radius:var(--rs);font-size:14px;font-weight:700;cursor:pointer;font-family:var(--fd);margin-top:8px;transition:all .2s;}
+.btn:hover{opacity:.85;}
+.err{background:rgba(248,113,113,.1);border:1px solid var(--re);color:var(--re);padding:10px;border-radius:var(--rs);font-size:13px;margin-bottom:16px;display:none;}
+.err.on{display:block;}
+.ok{background:rgba(62,207,142,.1);border:1px solid var(--gr);color:var(--gr);padding:10px;border-radius:var(--rs);font-size:13px;margin-bottom:16px;display:none;}
+.ok.on{display:block;}
+.lnk{text-align:center;margin-top:20px;font-size:13px;color:var(--tx2);}
+.lnk a{color:var(--ac2);text-decoration:none;font-weight:600;}
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="logo">Resume<span>IQ</span></div>
+  <div class="sub">Create your account</div>
+  <div class="err" id="errMsg"></div>
+  <div class="ok"  id="okMsg"></div>
+  <div class="fi"><label>Full Name</label><input type="text" id="name" placeholder="Vaishnavi Pogaku"/></div>
+  <div class="fi"><label>Email</label><input type="email" id="email" placeholder="you@email.com"/></div>
+  <div class="fi"><label>Phone</label><input type="text" id="phone" placeholder="+91 9XXXXXXXXX"/></div>
+  <div class="fi"><label>Password</label><input type="password" id="password" placeholder="Min 8 characters"/></div>
+  <div class="fi"><label>Confirm Password</label><input type="password" id="confirm" placeholder="Repeat password"/></div>
+  <button class="btn" onclick="doSignup()">Create Account →</button>
+  <div class="lnk">Already have an account? <a href="login.html">Login</a></div>
+</div>
+<script>const API='http://localhost:5000';</script>
+<script src="../js/auth.js"></script>
+<script>
+async function doSignup(){
+  const name=document.getElementById('name').value.trim();
+  const email=document.getElementById('email').value.trim();
+  const phone=document.getElementById('phone').value.trim();
+  const pw=document.getElementById('password').value.trim();
+  const cpw=document.getElementById('confirm').value.trim();
+  if(!name||!email||!pw||!cpw){showErr('Please fill in all required fields.');return;}
+  if(pw!==cpw){showErr('Passwords do not match.');return;}
+  const res=await Auth.signup(name,email,phone,pw,cpw);
+  if(res.success){
+    document.getElementById('okMsg').textContent='Account created! Redirecting to login...';
+    document.getElementById('okMsg').classList.add('on');
+    setTimeout(()=>window.location.href='login.html',1500);
+  } else {
+    showErr(res.message||'Signup failed. Please try again.');
+  }
+}
+function showErr(m){const e=document.getElementById('errMsg');e.textContent=m;e.classList.add('on');}
+document.addEventListener('keydown',e=>{if(e.key==='Enter')doSignup();});
+</script>
+</body></html>

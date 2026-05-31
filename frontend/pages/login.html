@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>ResumeIQ — Login</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet"/>
+<style>
+:root{--fd:'Syne',sans-serif;--fb:'DM Sans',sans-serif;--r:14px;--rs:8px;--ac:#7c6af7;--ac2:#a89cf7;--acd:rgba(124,106,247,.12);}
+[data-theme="dark"]{--bg:#07070d;--bg2:#0e0e18;--bg3:#15151f;--card:#1a1a26;--b:#222235;--b2:#2c2c42;--tx:#eaeaf5;--tx2:#8484a8;--tx3:#42425a;--gr:#3ecf8e;--re:#f87171;--shadow:rgba(0,0,0,.4);}
+[data-theme="light"]{--bg:#f5f5fc;--bg2:#ffffff;--bg3:#eeeef8;--card:#ffffff;--b:#ddddf0;--b2:#c8c8e8;--tx:#1a1a2e;--tx2:#555580;--tx3:#9090b8;--gr:#1a9e62;--re:#d94040;--shadow:rgba(0,0,0,.08);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--fb);background:var(--bg);color:var(--tx);min-height:100vh;display:flex;align-items:center;justify-content:center;}
+.box{background:var(--card);border:1px solid var(--b2);border-radius:20px;padding:40px;width:100%;max-width:420px;margin:20px;}
+.logo{font-family:var(--fd);font-size:24px;font-weight:800;letter-spacing:-1px;text-align:center;margin-bottom:8px;}
+.logo span{color:var(--ac2);}
+.sub{text-align:center;color:var(--tx2);font-size:14px;margin-bottom:32px;}
+.fi{margin-bottom:16px;}
+.fi label{display:block;font-size:12px;font-weight:600;color:var(--tx2);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;}
+.fi input{width:100%;background:var(--bg3);border:1px solid var(--b2);border-radius:var(--rs);padding:11px 14px;color:var(--tx);font-size:14px;font-family:var(--fb);outline:none;transition:all .2s;}
+.fi input:focus{border-color:var(--ac);background:var(--bg2);}
+.btn{width:100%;background:var(--ac);color:#fff;border:none;padding:12px;border-radius:var(--rs);font-size:14px;font-weight:700;cursor:pointer;font-family:var(--fd);margin-top:8px;transition:all .2s;}
+.btn:hover{opacity:.85;}
+.err{background:rgba(248,113,113,.1);border:1px solid var(--re);color:var(--re);padding:10px;border-radius:var(--rs);font-size:13px;margin-bottom:16px;display:none;}
+.err.on{display:block;}
+.ok{background:rgba(62,207,142,.1);border:1px solid var(--gr);color:var(--gr);padding:10px;border-radius:var(--rs);font-size:13px;margin-bottom:16px;display:none;}
+.ok.on{display:block;}
+.lnk{text-align:center;margin-top:20px;font-size:13px;color:var(--tx2);}
+.lnk a{color:var(--ac2);text-decoration:none;font-weight:600;}
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="logo">Resume<span>IQ</span></div>
+  <div class="sub">Sign in to your account</div>
+  <div class="err" id="errMsg"></div>
+  <div class="ok" id="okMsg"></div>
+  <div class="fi"><label>Email or Phone</label><input type="text" id="identifier" placeholder="you@email.com or +91 9XXXXXXXXX"/></div>
+  <div class="fi"><label>Password</label><input type="password" id="password" placeholder="Your password"/></div>
+  <button class="btn" onclick="doLogin()">Login →</button>
+  <div class="lnk"><a href="forgot-password.html">Forgot password?</a></div>
+  <div class="lnk">Don't have an account? <a href="signup.html">Sign up</a></div>
+</div>
+<script>const API='http://localhost:5000';</script>
+<script src="../js/auth.js"></script>
+<script>
+async function doLogin(){
+  const id=document.getElementById('identifier').value.trim();
+  const pw=document.getElementById('password').value.trim();
+  if(!id||!pw){showErr('Please fill in all fields.');return;}
+  const res=await Auth.login(id,pw);
+  if(res.success){
+    document.getElementById('okMsg').textContent='Login successful! Redirecting...';
+    document.getElementById('okMsg').classList.add('on');
+    setTimeout(()=>window.location.href='analyze.html',1000);
+  } else {
+    showErr(res.message||'Login failed. Please check your credentials.');
+  }
+}
+function showErr(m){const e=document.getElementById('errMsg');e.textContent=m;e.classList.add('on');}
+document.addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+</script>
+</body></html>
